@@ -1,0 +1,15 @@
+Работа по SSH.
+Обычно использую программу Putty. Указывает в поле Host IP сервера и в консоле вводим логин, пароль.
+После подключения проверяем через ls все файлы и дирректории на сервере.
+Вводим команду cd var/logs/archive, что бы открыть каталок  archive  с файлом backup.tar.gz. 
+⦁	установка прав на директорию archive  
+	chmod +w /archive 
+⦁	распаковка
+	tar -xzf /backup.tar.gz /backup;
+⦁	удалить файлы .tmp
+	rm *.tmp
+	можно перед удалением проверить, что будет удалено
+	ls *.tmp
+⦁	все файлы со строкой user deleted
+	grep -r user deleted /archive
+	grep -rn user deleted /archive (с указанием строки, где нужный текст)
