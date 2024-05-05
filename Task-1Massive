@@ -1,0 +1,39 @@
+# Сортировка массива с помощью алгоритма пузырьковой сортировки
+my @unsorted = ( qw/ 7 1 3 4 2 4 6 5 5 / );
+
+for my $i (0..$#unsorted) {
+    for my $j (0..$#unsorted-$i-1) {
+        if ($unsorted[$j] > $unsorted[$j+1]) {
+            my $temp = $unsorted[$j];
+            $unsorted[$j] = $unsorted[$j+1];
+            $unsorted[$j+1] = $temp;
+        }
+    }
+}
+
+print "Sorted array: @unsorted\n";
+
+# Алгоритм двоичного поиска
+my $target = 6;
+my $low = 0;
+my $high = $#unsorted;
+my $found = 0;
+
+while ($low <= $high) {
+    my $mid = int(($low + $high) / 2);
+    
+    if ($unsorted[$mid] == $target) {
+        $found = 1;
+        last;
+    } elsif ($unsorted[$mid] < $target) {
+        $low = $mid + 1; 
+    } else {
+        $high = $mid - 1; 
+    }
+}
+
+if ($found) {
+    print "MATCH\n";
+} else {
+    print "NOT_MATCH\n";
+}
