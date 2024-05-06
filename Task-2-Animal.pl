@@ -1,39 +1,42 @@
-# Сортировка массива с помощью алгоритма пузырьковой сортировки
-my @unsorted = ( qw/ 7 1 3 4 2 4 6 5 5 / );
+package Animal;
 
-for my $i (0..$#unsorted) {
-    for my $j (0..$#unsorted-$i-1) {
-        if ($unsorted[$j] > $unsorted[$j+1]) {
-            my $temp = $unsorted[$j];
-            $unsorted[$j] = $unsorted[$j+1];
-            $unsorted[$j+1] = $temp;
-        }
-    }
+sub new {
+    my $class = shift;
+    my $self = {};
+    bless $self, $class;
+    return $self;
 }
 
-print "Sorted array: @unsorted\n";
-
-# Алгоритм двоичного поиска
-my $target = 6;
-my $low = 0;
-my $high = $#unsorted;
-my $found = 0;
-
-while ($low <= $high) {
-    my $mid = int(($low + $high) / 2);
-    
-    if ($unsorted[$mid] == $target) {
-        $found = 1;
-        last;
-    } elsif ($unsorted[$mid] < $target) {
-        $low = $mid + 1; 
-    } else {
-        $high = $mid - 1; 
-    }
+sub eat {
+    my ($self, $food) = @_;
+    print "Animal is eating $food\n";
 }
 
-if ($found) {
-    print "MATCH\n";
-} else {
-    print "NOT_MATCH\n";
+sub sleep {
+    my ($self, $duration) = @_;
+    print "Animal is sleeping for $duration hours\n";
 }
+
+package Cat;
+use base 'Animal';
+
+sub new {
+    my $class = shift;
+    my $self = $class->SUPER::new();
+    bless $self, $class;
+    return $self;
+}
+
+sub eat {
+    my ($self, $food) = @_;
+    print "Cat is eating $food\n";
+    $self->SUPER::eat($food);
+}
+
+my $animal = Animal->new();
+$animal->eat("meat");
+$animal->sleep(8);
+
+my $cat = Cat->new();
+$cat->eat("fish");
+$cat->sleep(10);
