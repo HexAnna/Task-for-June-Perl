@@ -1,28 +1,5 @@
-package Animal;
+my $datetime = '2016-04-11 20:59:03';
+my ($date, $time) = $datetime =~ /^(\d{4}-\d{2}-\d{2})\s(\d{2}:\d{2}:\d{2})$/;
 
-sub new {
-    my $class = shift;
-    my $self = {};
-    bless $self, $class;
-    return $self;
-}
-
-sub speak {
-    my $self = shift;
-    print "Animal speaks\n";
-}
-
-package Cat;
-use base 'Animal';
-
-sub speak {
-    my $self = shift;
-    print "Cat meows\n";
-    $self->SUPER::speak();
-}
-
-my $animal = Animal->new();
-$animal->speak();
-
-my $cat = Cat->new();
-$cat->speak();
+print "Date: $date\n";
+print "Time: $time\n";
